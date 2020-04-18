@@ -1,5 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import 'font-awesome/css/font-awesome.min.css'
+import 'bootstrap-social/bootstrap-social.css'
 
 function Footer(props) {
     return (
