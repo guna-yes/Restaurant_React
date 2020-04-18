@@ -37,8 +37,8 @@ class Dishdetail extends Component {
         if (dish != null) {
             return (
                 <div className='col-12 col-md-5 m-1'>
-                    <Card>
-                        <CardImg width="100%" src={dish.image} alt={dish.name} />
+                    <Card >
+                        <CardImg height="100% " width="100%" src={dish.image} alt={dish.name} />
                         <CardBody>
                             <CardTitle>{dish.name}</CardTitle>
                             <CardText>{dish.description}</CardText>

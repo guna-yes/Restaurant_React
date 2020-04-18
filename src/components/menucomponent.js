@@ -2,12 +2,9 @@ import React, { Component } from 'react';
 import { Card, CardImg, CardImgOverlay, CardTitle } from 'reactstrap';
 
 class Menu extends Component {
+  
 
-    constructor(props) {
-        super(props);
-
-     
-    }
+ 
 
 
     render() {
@@ -15,7 +12,7 @@ class Menu extends Component {
             return (
                 <div key={dish.id} className='col-12 col-md-5 m-1'>
                     <Card onClick={ ()=>this.props.onClick(dish.id)} >
-                        <CardImg width="100%" src={dish.image} alt={dish.name} />
+                        <CardImg width="100px"  src={dish.image} alt={dish.name} />
                         <CardImgOverlay>
                             <CardTitle >{dish.name}</CardTitle>
                         </CardImgOverlay>
