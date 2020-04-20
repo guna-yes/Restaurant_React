@@ -3,6 +3,8 @@ import { Breadcrumb, BreadcrumbItem } from 'reactstrap';
 import { Link } from 'react-router-dom';
 
 function Contact(props) {
+    console.log(props);
+    
     return (
         <div className="container">
             <div className="row row-content">
