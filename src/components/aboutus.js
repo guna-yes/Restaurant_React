@@ -6,8 +6,7 @@ function About(props) {
     const lea = props.leaders.map((leader) => {
         return (
                 <RenderLeader key={leader.id} leader={leader}/>
-            
-            
+   
         );
     });
     
