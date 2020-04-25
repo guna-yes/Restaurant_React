@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import Menu from './menucomponent';
-import { DISHES } from '../shared/dishes';
 import Home from './home'
 import Header from './header'
 import Footer from './footer'
