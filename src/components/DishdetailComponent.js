@@ -35,8 +35,6 @@ const minLength = (len) => (val) => val && (val.length >= len);
            </div>
      )
     }
-     
-
     function RenderDish({dish}) {
         if (dish != null) {
             return (
