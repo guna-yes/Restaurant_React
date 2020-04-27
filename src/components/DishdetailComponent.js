@@ -9,7 +9,7 @@ const minLength = (len) => (val) => val && (val.length >= len);
 
 // import Commentform from './commentform';
 
-     function RenderComments({comments}) {
+     function RenderComments({comments,addComment,dishId}) {
         if (comments != null) 
         return (
             <div className=''>
@@ -27,11 +27,12 @@ const minLength = (len) => (val) => val && (val.length >= len);
                         day: '2-digit'
                     }).format(new Date(comment.date))}
                     </p>
+                    
                 </li>
-            )
-           })
+                  )})
            }
            </ul>
+                <Commentform dishId={dishId} addComment={addComment} />
            </div>
      )
     }
@@ -68,7 +69,8 @@ class Commentform extends Component {
         })
     };
     handleSubmit(values) {
-        alert(JSON.stringify(values));
+        alert("Current State is: " + JSON.stringify(values));
+        this.props.addComment(this.props.dishId, values.rating, values.author, values.comment);
     }
     render() {
         return (
@@ -76,7 +78,7 @@ class Commentform extends Component {
                 <button onClick={this.toggleModal} className="btn btn-primary"> <i className="fa fa-pencil"></i> Submit Comment</button>
                 <Modal isOpen={this.state.isModalOpen} toggle={this.toggleModal}>
                     <ModalHeader>Submit Comment</ModalHeader>
-                    <LocalForm onSubmit={this.handleSubmit}>
+                    <LocalForm onSubmit={values => this.handleSubmit(values)}>
                         <Row className="form-group">
                             <div className="container">
                                 <Col sm={12}>
@@ -93,7 +95,7 @@ class Commentform extends Component {
                                     <label>Your name</label>
                                 </Col>
                                 <Col sm={12} className="mt-1">
-                                    <Control.text model=".Name" id="name" className="form-control"
+                                    <Control.text model=".author" id="name" className="form-control"
                                         placeholder="Name" validators={{
                                             required, minLength: minLength(3), maxLength: maxLength(15)
                                         }}
@@ -112,7 +114,7 @@ class Commentform extends Component {
                                     <label>Comments</label>
                                 </Col>
                                 <Col sm={12} className="mt-1">
-                                    <Control.textarea model=".comments" className="form-control" rows="5" >
+                                    <Control.textarea model=".comment" className="form-control" rows="5" >
                                     </Control.textarea>
                                 </Col>
                                 <Col sm={12} className="mt-5">
@@ -147,16 +149,12 @@ class Commentform extends Component {
                           <RenderDish dish={props.dish} />
                       </div>
                       <div className="col-12 col-md-5 m-1">
-                          <RenderComments comments={props.comments} />
+                          <RenderComments comments={props.comments}
+                              addComment={props.addComment}
+                              dishId={props.dish.id} />
                       </div>
                   </div>
-                  <div className="row">
-                      <div className="col-12 col-md-5 m-1">
-                      </div>
-                      <div className="col-12 col-md-5 m-1">
-                      <Commentform/>
-                      </div>
-                  </div>
+               
               </div>
           );
         else
