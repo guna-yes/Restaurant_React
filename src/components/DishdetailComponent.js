@@ -2,6 +2,8 @@ import React,{Component} from 'react';
 import { Card, CardImg, CardBody, CardText, CardTitle, Breadcrumb, BreadcrumbItem, Modal, ModalHeader, Row, Label, Col } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import { Control, LocalForm, Errors } from 'react-redux-form'
+import { Loading } from './LoadingComponent';
+
 
 const required = (val) => val && val.length;
 const maxLength = (len) => (val) => !(val) || (val.length <= len);
@@ -27,10 +29,9 @@ const minLength = (len) => (val) => val && (val.length >= len);
                         day: '2-digit'
                     }).format(new Date(comment.date))}
                     </p>
-                    
                 </li>
-                  )})
-           }
+              )})
+           };
            </ul>
                 <Commentform dishId={dishId} addComment={addComment} />
            </div>
@@ -130,7 +131,25 @@ class Commentform extends Component {
     }
 }
     const Dishdetail=(props)=>{
-      if(props.dish!= null)
+        if (props.isLoading) {
+            return (
+                <div className="container">
+                    <div className="row">
+                        <Loading />
+                    </div>
+                </div>
+            );
+        }
+        else if (props.errMess) {
+            return (
+                <div className="container">
+                    <div className="row">
+                        <h4>{props.errMess}</h4>
+                    </div>
+                </div>
+            );
+        }
+        else if (props.dish != null)
        
           return (
               <div className="container">
