@@ -13,7 +13,7 @@ const minLength = (len) => (val) => val && (val.length >= len);
 
 // import Commentform from './commentform';
 
-     function RenderComments({comments,addComment,dishId}) {
+function RenderComments({ comments, postComment,dishId}) {
         if (comments != null) 
         return (
             <div className=''>
@@ -33,9 +33,9 @@ const minLength = (len) => (val) => val && (val.length >= len);
                     </p>
                 </li>
               )})
-           };
+           }
            </ul>
-                <Commentform dishId={dishId} addComment={addComment} />
+                <Commentform dishId={dishId} postComment={postComment} />
            </div>
      )
     }
@@ -72,7 +72,7 @@ class Commentform extends Component {
     };
     handleSubmit(values) {
         alert("Current State is: " + JSON.stringify(values));
-        this.props.addComment(this.props.dishId, values.rating, values.author, values.comment);
+        this.props.postComment(this.props.dishId, values.rating, values.author, values.comment);
     }
     render() {
         return (
@@ -170,8 +170,9 @@ class Commentform extends Component {
                       </div>
                       <div className="col-12 col-md-5 m-1">
                           <RenderComments comments={props.comments}
-                              addComment={props.addComment}
-                              dishId={props.dish.id} />
+                              dishId={props.dish.id} 
+                              postComment={props.postComment}
+                              />
                       </div>
                   </div>
                
