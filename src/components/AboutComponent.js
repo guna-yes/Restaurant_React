@@ -2,33 +2,32 @@ import React from 'react';
 import { Breadcrumb, BreadcrumbItem, Card, CardBody, CardHeader, Media } from 'reactstrap';
 import { Link } from 'react-router-dom';
 
+
+const RenderLeader=(props)=>
+{
+    return(
+    <Media tag="li">
+        <Media left middle>
+        <Media object src={props.leader.image} alt={props.leader.name} />
+        </Media>
+
+        <Media body className="ml-5">
+            <Media heading>{props.leader.name}</Media>
+            <p>{props.leader.designation}</p>
+            <p>{props.leader.description}</p>
+        </Media>
+    </Media>
+    );
+}
+
 function About(props) {
-    const lea = props.leaders.map((leader) => {
+
+    const leaders = props.leaders.map((leader) => {
         return (
-                <RenderLeader key={leader.id} leader={leader}/>
-   
+           <React.Fragment> <RenderLeader leader={leader}/><br /></React.Fragment>
         );
     });
-    
-    
-      function RenderLeader({ leader }) {
-    return (
-      <Media className="mt-5">
-        <Media  className="mr-5">
-          <Media object src={leader.image} alt={leader.name} />
-        </Media>
-        <Media body>
-          <Media heading>{leader.name}</Media>
-          <p>{leader.designation}</p>
-          {leader.description}
-        </Media>
-      </Media>
-    );
-    }
-  
-    
 
-    
     return(
         <div className="container">
             <div className="row">
@@ -85,15 +84,14 @@ function About(props) {
                 </div>
                 <div className="col-12">
                     <Media list>
-                        {lea}
-                       
-                       
+                        {leaders}
                     </Media>
-                     
                 </div>
             </div>
         </div>
     );
 }
+
+
 
 export default About;    
